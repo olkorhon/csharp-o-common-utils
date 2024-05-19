@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 
-namespace Olli.Utility.Logging
+namespace Olli.Common.Utils.Logging
 {
     /// <summary>
     /// Logger that memorizes any received logs for later processing

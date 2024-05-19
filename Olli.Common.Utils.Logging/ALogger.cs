@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace Olli.Utility.Logging
+namespace Olli.Common.Utils.Logging
 {
     /// <summary>
     /// Common functionality and interface definition for all loggers

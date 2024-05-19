@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Olli.Utility.Logging
+namespace Olli.Common.Utils.Logging
 {
     /// <summary>
     /// Console logger that prints logs in Azure comptaible way, errors and exceptions autoamtically Fail the ongoing build

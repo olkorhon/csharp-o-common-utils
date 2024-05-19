@@ -1,4 +1,4 @@
-﻿namespace Olli.Utility.Logging
+﻿namespace Olli.Common.Utils.Logging
 {
     public enum LType
     {

@@ -3,7 +3,7 @@ using System;
 using System.IO;
 using System.Threading;
 
-namespace Olli.Utility.Logging
+namespace Olli.Common.Utils.Logging
 {
     /// <summary>
     /// Logs received messages directly to a file

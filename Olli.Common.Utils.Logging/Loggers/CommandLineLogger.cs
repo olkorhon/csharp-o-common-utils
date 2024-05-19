@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Olli.Utility.Logging
+namespace Olli.Common.Utils.Logging
 {
     /// <summary>
     /// Console logger that prints logs to stdout

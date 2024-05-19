@@ -1,7 +1,7 @@
 ﻿using System;
-using Olli.Utility.Logging;
+using Olli.Common.Utils.Logging;
 
-namespace Olli.Utility.LoggerTester
+namespace Olli.Common.Utils.LoggingTester
 {
     internal class Program
     {

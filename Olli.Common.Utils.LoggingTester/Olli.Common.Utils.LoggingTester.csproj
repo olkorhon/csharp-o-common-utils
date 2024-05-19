@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{A9A1FF99-33FA-411A-ACD8-FB755C56AEE4}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Olli.Utility.LoggerTester</RootNamespace>
-    <AssemblyName>Olli.Utility.LoggerTester</AssemblyName>
+    <RootNamespace>Olli.Common.Utils.LoggingTester</RootNamespace>
+    <AssemblyName>Olli.Common.Utils.LoggingTester</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -45,7 +45,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Olli.Utility.Logging\Olli.Utility.Logging.csproj">
+    <ProjectReference Include="..\Olli.Common.Utils.Logging\Olli.Common.Utils.Logging.csproj">
       <Project>{092456b8-7fd5-42d1-9b04-3526fc8c9da2}</Project>
       <Name>Olli.Utility.Logging</Name>
       <Private>False</Private>

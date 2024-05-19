@@ -8,12 +8,12 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Ponsse.Olli.Logging</RootNamespace>
-    <AssemblyName>Olli.Utility.Logging</AssemblyName>
+    <AssemblyName>Olli.Common.Utils.Logging</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>Olli.Utility.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>Olli.Common.Utils.snk</AssemblyOriginatorKeyFile>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -52,7 +52,7 @@
     <Compile Include="StringBuffer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Olli.Utility.snk" />
+    <None Include="Olli.Common.Utils.snk" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
