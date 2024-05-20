@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace Olli.Common.Utils.Logging
+namespace Olli.Common.Logging
 {
     /// <summary>
     /// Common functionality and interface definition for all loggers
@@ -66,7 +66,7 @@ namespace Olli.Common.Utils.Logging
         }
 
         /// <inheritdoc/>
-        public abstract void Log(LType logType, string valueString);
+        public abstract void Log(LType logType, string msgString);
 
         /// <summary>
         /// Peels exception onion into a single multiline human readable string.

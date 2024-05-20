@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Olli.Common.Utils.Logging
+namespace Olli.Common.Logging
 {
     public interface ILogger
     {
@@ -65,6 +65,6 @@ namespace Olli.Common.Utils.Logging
         /// </summary>
         /// <param name="logType"></param>
         /// <param name="valueString"></param>
-        void Log(LType logType, string valueString);
+        void Log(LType logType, string msgString);
     }
 }

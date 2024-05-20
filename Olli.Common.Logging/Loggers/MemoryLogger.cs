@@ -1,26 +1,22 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 
-namespace Olli.Common.Utils.Logging
+namespace Olli.Common.Logging
 {
-    public class WpfLogger : ALogger
+    /// <summary>
+    /// Logger that memorizes any received logs for later processing
+    /// </summary>
+    public class MemoryLogger : ALogger
     {
-        readonly ObservableCollection<LogEntry> logEntries;
+        readonly Collection<LogEntry> logEntries;
 
         /// <summary>
-        /// Constructor for WpfLogger, provides an observable collection of log entries
+        /// Constructor for MemoryLogger, initializes log
+        /// entry collection
         /// </summary>
-        public WpfLogger()
+        public MemoryLogger()
         {
-            logEntries = new ObservableCollection<LogEntry>();
-        }
-
-        /// <summary>
-        /// Observable collection containing log entries known to this logger
-        /// </summary>
-        public ObservableCollection<LogEntry> LogEntries
-        {
-            get { return logEntries; }
+            logEntries = new Collection<LogEntry>();
         }
 
         /// <inheritdoc />
@@ -66,12 +62,15 @@ namespace Olli.Common.Utils.Logging
         }
 
         /// <inheritdoc />
-        public override void Log(LType logType, string msg)
+        public override void Log(LType logType, string msgString)
         {
-            Log(new LogEntry(logType, msg));
+            Log(new LogEntry(logType, msgString));
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="logEntry"></param>
         public void Log(LogEntry logEntry)
         {
             logEntries.Add(logEntry);
@@ -91,11 +90,13 @@ namespace Olli.Common.Utils.Logging
         }
 
         /// <summary>
-        /// Remove all logs from storage
+        /// Replay all stored messages to another logger in FIFO order
         /// </summary>
-        public void Clear()
+        /// <param name="logger">Instance that inherits functionality from ILogger</param>
+        public void ReplayLogs(ALogger logger)
         {
-            logEntries.Clear();
+            foreach (LogEntry logEntry in logEntries)
+                logger.Log(logEntry.LogType, logEntry.Msg);
         }
     }
 }

@@ -1,13 +1,13 @@
 ﻿using System;
 
-namespace Olli.Common.Utils.Logging
+namespace Olli.Common.Logging
 {
     /// <summary>
     /// Console logger that prints logs in Azure comptaible way, errors and exceptions autoamtically Fail the ongoing build
     /// </summary>
     public class AzureTfsLogger : ALogger
     {
-        private object _lock = new object();
+        private readonly object _lock = new object();
 
         /// <summary>
         /// Collection of Azure pipeline issue types. Indicates issue severity, error, warning, etc.
@@ -69,32 +69,29 @@ namespace Olli.Common.Utils.Logging
         }
 
         /// <inheritdoc />
-        public override void Log(LType logType, string valueString)
+        public override void Log(LType logType, string msgString)
         {
             lock (_lock)
             {
                 switch (logType)
                 {
                     case LType.Exception:
-                        oneOrMoreErrorsLogged = true;
-                        Console.WriteLine($"##[error]{valueString}");
-                        break;
                     case LType.Error:
-                        oneOrMoreErrorsLogged = true; 
-                        Console.WriteLine($"##[error]{valueString}");
+                        oneOrMoreErrorsLogged = true;
+                        Console.WriteLine($"##[error]{msgString}");
                         break;
                     case LType.Warning:
                         oneOrMoreWarningsLogged = true;
-                        Console.WriteLine($"##[warning]{valueString}");
+                        Console.WriteLine($"##[warning]{msgString}");
                         break;
                     case LType.Info:
-                        Console.WriteLine(valueString);
+                        Console.WriteLine(msgString);
                         break;
                     case LType.Debug:
-                        Console.WriteLine($"##[debug]{valueString}");
+                        Console.WriteLine($"##[debug]{msgString}");
                         break;
                     case LType.Command:
-                        Console.WriteLine($"##[command]{valueString}");
+                        Console.WriteLine($"##[command]{msgString}");
                         break;
                 }
             }

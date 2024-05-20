@@ -1,34 +1,36 @@
-﻿using Ponsse.Olli.CommieTester.Utility;
-using System;
+﻿using System;
 using System.IO;
 using System.Threading;
 
-namespace Olli.Common.Utils.Logging
+using Olli.Common.Buffering;
+
+namespace Olli.Common.Logging
 {
     /// <summary>
     /// Logs received messages directly to a file
     /// </summary>
     public class FileLogger : ALogger
     {
-        private object _lock = new object();
+        private readonly object _lock = new object();
 
-        string filePath;
-        StreamWriter writer;
+        private readonly string filePath;
 
-        Thread writerThread;
-        StringBuffer msgBuffer;
+        private readonly RingBuffer<string> msgBuffer;
+        private readonly Thread writerThread;
 
         public FileLogger(string filePath)
         {
             this.filePath = filePath;
-            writer = null;
+
+            msgBuffer = new RingBuffer<string>(2048);
 
             writerThread = new Thread(new ThreadStart(WriterWorkerThread));
-            msgBuffer = new StringBuffer(2048);
-
             writerThread.Start();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void WriterWorkerThread()
         {
             if (File.Exists(filePath))
@@ -38,15 +40,15 @@ namespace Olli.Common.Utils.Logging
             {
                 try
                 {
-                    using (writer = new StreamWriter(filePath, true))
+                    using (StreamWriter writer = new StreamWriter(filePath, true))
                     {
-                        int messagesToWrite = msgBuffer.BufferLoadMessageCount;
+                        int messagesToWrite = msgBuffer.BufferedElementCount;
                         for (int i = 0; i < messagesToWrite; i++)
                         {
-                            if (msgBuffer.BufferLoadMessageCount <= 0)
+                            if (msgBuffer.BufferedElementCount <= 0)
                                 break;
 
-                            string msgToWrite = msgBuffer.GetBufferedMsg();
+                            string msgToWrite = msgBuffer.Read();
                             writer.WriteLine(msgToWrite);
                             writer.Flush();
                         }
@@ -57,13 +59,18 @@ namespace Olli.Common.Utils.Logging
                 {
                     Console.WriteLine($"Something went wrong: {e.Message}");
                 }
-                
+
                 // Wait a second before writing buffered messages
                 Thread.Sleep(1000);
             }
         }
 
-        public override void Log(LType logType, string valueString)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="logType"></param>
+        /// <param name="msgString"></param>
+        public override void Log(LType logType, string msgString)
         {
             lock (_lock)
             {
@@ -71,24 +78,24 @@ namespace Olli.Common.Utils.Logging
                 {
                     case LType.Exception:
                         oneOrMoreErrorsLogged = true;
-                        msgBuffer.BufferMsg(valueString);
+                        msgBuffer.Buffer(msgString);
                         break;
                     case LType.Error:
                         oneOrMoreErrorsLogged = true;
-                        msgBuffer.BufferMsg($"[Error] {valueString}");
+                        msgBuffer.Buffer($"[Error] {msgString}");
                         break;
                     case LType.Warning:
                         oneOrMoreWarningsLogged = true;
-                        msgBuffer.BufferMsg($"[Warning] {valueString}");
+                        msgBuffer.Buffer($"[Warning] {msgString}");
                         break;
                     case LType.Info:
-                        msgBuffer.BufferMsg(valueString);
+                        msgBuffer.Buffer(msgString);
                         break;
                     case LType.Debug:
-                        msgBuffer.BufferMsg($"[Debug] {valueString}");
+                        msgBuffer.Buffer($"[Debug] {msgString}");
                         break;
                     case LType.Command:
-                        msgBuffer.BufferMsg($"[Command] {valueString}");
+                        msgBuffer.Buffer($"[Command] {msgString}");
                         break;
                 }
             }

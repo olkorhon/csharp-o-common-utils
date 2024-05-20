@@ -4,17 +4,18 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A9A1FF99-33FA-411A-ACD8-FB755C56AEE4}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>Olli.Common.Utils.LoggingTester</RootNamespace>
-    <AssemblyName>Olli.Common.Utils.LoggingTester</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <ProjectGuid>{D05ED26E-371D-423C-BA68-5C4019AA4A5C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Olli.Common.Buffering</RootNamespace>
+    <AssemblyName>Olli.Common.Buffering</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\Olli.Common.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +25,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>..\Bin\Release\</OutputPath>
@@ -38,18 +38,16 @@
     <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <None Include="..\Olli.Common.snk">
+      <Link>Olli.Common.snk</Link>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseBuffer.cs" />
+    <Compile Include="IBuffer.cs" />
+    <Compile Include="MockBuffer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Olli.Common.Utils.Logging\Olli.Common.Utils.Logging.csproj">
-      <Project>{092456b8-7fd5-42d1-9b04-3526fc8c9da2}</Project>
-      <Name>Olli.Utility.Logging</Name>
-      <Private>False</Private>
-    </ProjectReference>
+    <Compile Include="RingBuffer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

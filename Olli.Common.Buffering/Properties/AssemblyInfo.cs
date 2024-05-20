@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Ponsse.Olli.Logging")]
+[assembly: AssemblyTitle("Olli.Common.Buffering")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Ponsse Oyj")]
-[assembly: AssemblyProduct("Ponsse.Olli.Logging")]
-[assembly: AssemblyCopyright("Copyright © Ponsse Oyj 2023")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("Olli.Common.Buffering")]
+[assembly: AssemblyCopyright("Copyright ©  2024")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("092456b8-7fd5-42d1-9b04-3526fc8c9da2")]
+[assembly: Guid("d05ed26e-371d-423c-ba68-5c4019aa4a5c")]
 
 // Version information for an assembly consists of the following four values:
 //
