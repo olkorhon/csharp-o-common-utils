@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Olli.Common.Buffering</id>
+    <version>1.0.0</version>
+    <title>Olli.Common.Buffering</title>
+    <authors>Olli</authors>
+    <owners>Olli</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Common implementation for diffent types of buffers</description>
+    <releaseNotes></releaseNotes>
+    <copyright></copyright>
+    <tags></tags>
+  </metadata>
+</package>

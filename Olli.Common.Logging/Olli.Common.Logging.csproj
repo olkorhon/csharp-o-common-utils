@@ -60,6 +60,10 @@
     <None Include="..\Olli.Common.snk">
       <Link>Olli.Common.snk</Link>
     </None>
+    <None Include="Olli.Common.Logging.nuspec" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="AfterBuild">
+    <Exec Command="nuget pack .\$(AssemblyName).csproj -OutputDirectory $(ProjectDir)..\Bin\$(Configuration)\" />
+  </Target>
 </Project>
